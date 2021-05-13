@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import InputForm from './Pages/InputForm';
+import {Navigator} from 'react-onsenui';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+function App(props) {
+  const [values, setValues] = useState({
+    text: '',
+    date: '',
+    checkboxes: {box1: false, box2: false, box3: false},
+    radio: '',
+    select: 'default'
+  });
+
+  const renderPage = (route, navigator) => {
+    const props = route.props || {};
+    props.navigator = navigator;
+    props.values = values;
+    props.setValues = setValues;
+
+    return React.createElement(route.component, props);
+  }
+
+
+  return (    
+    <Navigator
+      id="navigator"
+      renderPage={renderPage}
+      initialRoute={{
+        component: InputForm
+      }} 
+    />    
   );
 }
 
