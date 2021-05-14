@@ -12,12 +12,6 @@ import {
 import AnswersPage from './AnswersPage';
 
 function InputForm(props) {
-
-  const submitForm = () => {
-    console.log(props.values);
-    props.navigator.pushPage({component: AnswersPage});    
-  }
-
   const setProperty = (property, value) => {
     let newValues = {...props.values};
     newValues[property] = value;
@@ -88,7 +82,7 @@ function InputForm(props) {
       </Select>
       
       <div>
-        <Button id="submitButton" onClick={submitForm}>Submit Form</Button>
+        <Button id="submitButton" onClick={() => props.navigator.pushPage({component: AnswersPage})}>Submit Form</Button>
       </div>
     </Page>
   );

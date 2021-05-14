@@ -1,14 +1,7 @@
 import '../App.css';
-import {Page, Toolbar, Button} from 'react-onsenui';
-import InputForm from './InputForm';
+import {Page, Button} from 'react-onsenui';
 
 function AnswersPage(props) {
-
-  const buttonClicked = () => {
-    console.log("I was clicked!!!");
-    props.navigator.popPage();
-  }
-
   const getSelectedCheckboxes = () => {
     return Object.keys(props.values.checkboxes).map((key) => {
       return <p>{`${key}: ${props.values.checkboxes[key]}`}</p> 
@@ -32,7 +25,7 @@ function AnswersPage(props) {
 
   return (
     <Page contentStyle={{padding: 40}}>
-      <Button id="submitButton" onClick={buttonClicked}>Back</Button>
+      <Button id="submitButton" onClick={() => props.navigator.popPage()}>Back</Button>
       <p>Text: {props.values.text}</p>
       <p>Date: {props.values.date}</p>
       <p>Selected checkboxes: {getSelectedCheckboxes()}</p>
